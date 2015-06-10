@@ -1,0 +1,10 @@
+pkg/*
+doc/*
+*.gem
+.bundle
+ext/mri/*.bundle
+*.o
+.DS_Store
+
+ext/mri/Makefile
+Gemfile.lock

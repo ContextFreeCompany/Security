@@ -1,0 +1,11 @@
+#Teste da classe SHA512
+
+require_relative 'SHA512'
+
+sha = SHA512.new "Giovani Ferreira"
+
+puts sha.hash
+
+puts sha.is_password? "Giovani Ferreira"
+
+puts sha.prepareForSave
