@@ -1,7 +1,7 @@
 #Teste hashControl
 require_relative 'hashControl'
 
-var = HashControl.new :secret => "Giovani Ferreira", :algorithm => "SHA384"
+var = HashControl.new :secret => "Giovani Ferreira", :algorithm => "Md5"
 
 # var2 = HashControl.new :secret => var.hash
 

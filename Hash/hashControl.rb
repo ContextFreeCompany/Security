@@ -26,6 +26,8 @@ class HashControl
 		contents[:algorithm] = contents[:algorithm].downcase if contents[:algorithm] != nil
 
 		#Identifica o algoritimo desejado
+		#Bcrypt é utilizado como algoritmo padrão caso nenhum seja selecionado
+		#Ou caso selecione um errado
 		case contents[:algorithm]
 		when 'scrypt'
 			require_relative "SCrypt/ScryptHash"
@@ -39,10 +41,12 @@ class HashControl
 		when 'sha512'
 			require_relative "SHA/SHA512"
 			@algorithmInstance = SHA512.new contents[:secret], contents[:salt]
+		when 'md5'
+			require_relative 'MD5/MD5'
+			@algorithmInstance = MD5.new contents[:secret], contents[:salt]
 		else
 			require_relative "BCrypt/BcryptHash"
-			#Bcrypt é utilizado como algoritmo padrão
-			@algorithmInstance = BcryptHash.new secret
+			@algorithmInstance = BcryptHash.new contents[:secret]
 		end
 	end
 
