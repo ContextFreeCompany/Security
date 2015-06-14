@@ -45,6 +45,12 @@ class SecretBox
 	end
 	alias_method :cypher_text, :hash  	#atribui ao metodo o nome cypher_text
 
+	#Informa o nome de algoritmo que está sendo utilizado pelo progrma
+	def algorithmSelected
+		return @type.algorithmInstance
+	end
+	alias_method :algorithm, :algorithmSelected
+
 	#retorna o hashmap com todas as informações necessárias
 	def prepareForSave	
 		#faz a chamada do save da classe

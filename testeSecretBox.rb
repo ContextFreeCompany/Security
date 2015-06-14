@@ -8,11 +8,13 @@ require_relative 'SecretBox'
 #Mas é necessário que ele aplique caso o texto nao seja um hash
 
 senha = "Giovaniferreira" 
-var = SecretBox.new :secret => senha, :type => "HAsh", :algorithm => "ShA256"
+var = SecretBox.new :secret => senha, :type => "HAsh", :algorithm => "ShA384"
 # puts "deu bom"
 # puts var.prepareForSave
 
 var2 = SecretBox.new var.prepareForSave
+
+puts var2.algorithm
 
 puts var2 == "Giovaniferreira"
 

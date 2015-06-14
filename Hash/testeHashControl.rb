@@ -1,10 +1,12 @@
 #Teste hashControl
 require_relative 'hashControl'
 
-var = HashControl.new :secret => "Giovani Ferreira", :algorithm => "SHA256"
+var = HashControl.new :secret => "Giovani Ferreira", :algorithm => "SHA384"
 
 # var2 = HashControl.new :secret => var.hash
 
 # puts var == "Giovani Ferreira"
 puts var.algorithmInstance
-puts var.prepareForSave
+var2 = HashControl.new var.prepareForSave
+
+puts var2 == "Giovani Ferreira"
