@@ -11,16 +11,12 @@ class SHA256
 	def initialize text, salt = nil
 		#caso o salt seja nulo gera-se um salt aleatorio
 		@salt = salt ||= geraSalt
-		puts text
-		puts @salt
-		@hash = Digest::SHA256.hexdigest @salt + text
+		#Se o texto passado não for um hash valido, gera-se um novo hash
+		isValidHash(text) ? @hash = text : @hash = Digest::SHA256.hexdigest(@salt + text) 
 	end
 
 	#Função para comparar o que foi digitado com o hash
 	def ==(toCompare)
-		puts @salt, toCompare
-		puts Digest::SHA256.hexdigest(@salt + toCompare)
-		puts @hash
 		return Digest::SHA256.hexdigest(@salt + toCompare) == @hash
 	end
 	alias_method :is_password?, :==	#Define um segundo nome pra função de comparar
@@ -40,5 +36,11 @@ class SHA256
 		#retorna um conjunto aleatorio de 32 bytes
 		return OpenSSL::Random.random_bytes(32).unpack('H*').first.rjust(16,'0')
 	end
+
+	#Verifica se um dado hash é um hash SHA256
+	def isValidHash? hash
+		return hash.match("[a-fA-F0-9]{40}") != nil
+	end
+	alias_method :isValidHash, :isValidHash? #atribui ao método isValidHash? um nome alternativo
 
 end
