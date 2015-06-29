@@ -1,7 +1,5 @@
 #Implementação da Classe SHA384
 
-require 'digest'
-
 class SHA384
 
 	#Atributos da classe

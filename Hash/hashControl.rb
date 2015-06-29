@@ -1,8 +1,14 @@
 #Classe de controle de Hash
 
-#As requisições de arquivos estao sendo feitas em tempo de execução
-#Pelo menos eu acho
+#Requisições dos Arquivos
+require_relative "SCrypt/ScryptHash"
+require_relative "SHA/SHA256"
+require_relative "SHA/SHA384"
+require_relative "SHA/SHA512"
+require_relative "MD5/MD5"
+require_relative "BCrypt/BcryptHash"
 
+#início da implementação do controlador de algoritmo de hash
 class HashControl
 
 	#Setando o padrão para os parametros, serve para deixar alguns parametro opcionais
@@ -30,27 +36,21 @@ class HashControl
 		#Ou caso selecione um errado
 		case contents[:algorithm]
 		when 'scrypt'
-			require_relative "SCrypt/ScryptHash"
 			@algorithmInstance = ScryptHash.new contents[:secret]
 		when 'sha256'
-			require_relative "SHA/SHA256"
 			@algorithmInstance = SHA256.new contents[:secret], contents[:salt]
 		when 'sha384'
-			require_relative "SHA/SHA384"
 			@algorithmInstance = SHA384.new contents[:secret], contents[:salt]
 		when 'sha512'
-			require_relative "SHA/SHA512"
 			@algorithmInstance = SHA512.new contents[:secret], contents[:salt]
 		when 'md5'
-			require_relative 'MD5/MD5'
 			@algorithmInstance = MD5.new contents[:secret], contents[:salt]
 		else
-			require_relative "BCrypt/BcryptHash"
 			@algorithmInstance = BcryptHash.new contents[:secret]
 		end
 	end
 
-	#Abstração da comparação fornecida pela gema --- Verificar utilidade
+	#Abstração da comparação fornecida pela gema
 	def ==(toCompare)
 		#chama a função que compara a senha (texto plano) com o hash
 		return @algorithmInstance == toCompare

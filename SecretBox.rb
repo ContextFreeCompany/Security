@@ -44,6 +44,7 @@ class SecretBox
 		return @type.secret
 	end
 	alias_method :cypher_text, :hash  	#atribui ao metodo o nome cypher_text
+	alias_method :secret, :hash 		#atribui ao metodo o nome secret
 
 	#Informa o nome de algoritmo que está sendo utilizado pelo progrma
 	def algorithmSelected

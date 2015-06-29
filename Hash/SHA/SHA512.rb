@@ -1,7 +1,5 @@
 #Implementação do algoritmo SHA512
 
-require 'digest'
-
 class SHA512
 
 	#Atributos da classe

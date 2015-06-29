@@ -1,7 +1,5 @@
 #Implementação do SHA256, intenção de usar para integridade
 
-require 'digest'
-
 class SHA256
 
 	#Atributos da classe
